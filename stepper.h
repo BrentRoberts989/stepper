@@ -27,20 +27,20 @@ struct STEPPER
 };
 
 /**
- * @brief Function to set up a new stepper motor struct, should be used before any other functions from stepper or accessing any of the parts of a STEPPER struct.
+ * @brief The function to set up a new stepper motor struct, should be used before any other functions from stepper or accessing any of the parts of a STEPPER struct.
  * 
- * @param s The STEPPER struct to be initialized
- * @param setA Function pointer to control the A channel. The int param of this functions should be a 1 or 0 indicating output or no output to the channel.
- * @param setANot Function pointer to control the ANot channel. The int param of this functions should be a 1 or 0 indicating output or no output to the channel.
- * @param setB Function pointer to control the B channel. The int param of this functions should be a 1 or 0 indicating output or no output to the channel.
- * @param setBNot Function pointer to control the BNot channel. The int param of this functions should be a 1 or 0 indicating output or no output to the channel.
+ * @param s A  pointer to the STEPPER struct to be initialized
+ * @param setA Function pointer to control the A channel. The int param of this function should be a 1 or 0 indicating output or no output to the channel.
+ * @param setANot Function pointer to control the ANot channel. The int param of this function should be a 1 or 0 indicating output or no output to the channel.
+ * @param setB Function pointer to control the B channel. The int param of this function should be a 1 or 0 indicating output or no output to the channel.
+ * @param setBNot Function pointer to control the BNot channel. The int param of this function should be a 1 or 0 indicating output or no output to the channel.
  */
 void setupStepper(struct STEPPER* s, void (*setA)(int), void (*setANot)(int), void (*setB)(int), void (*setBNot)(int));
 
 /**
  * @brief Get the current steps of the Stepper
  * 
- * @param STEPPER The struct indicating the stepper to get steps from.
+ * @param STEPPER The struct indicates the stepper from which to get steps.
  * 
  * @return float The current step number of the motor where 0 is the starting step.
  */
@@ -54,9 +54,9 @@ int getCurrentStep(struct STEPPER s);
 void setTargetStep(struct STEPPER* s, int targetSteps);
 
 /**
- * @brief A function to run every cycle to update a stepper motor with instructions based on it's struct.
+ * @brief A function to run every cycle to update a stepper motor with instructions based on its struct.
  * 
- * @param s The STEPPER struct to update, should be initialized before callthiing function.
+ * @param s The STEPPER struct to update, should be initialized before calling function.
  */
 void updateStepper(struct STEPPER *s);
 
