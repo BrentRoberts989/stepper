@@ -1,5 +1,6 @@
 #include <stepper.h>
 
+
 const int pinA  =2 , pinNotA =3 , pinB = 4, pinNotB =5;
 
 
@@ -43,6 +44,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
+  //Serial.println(getCurrentStep(stepper1));
   updateStepper(&stepper1);
-  delay(10);
+  delay(12);
 }
