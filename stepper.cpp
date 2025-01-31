@@ -52,14 +52,13 @@ void setTargetStep(struct STEPPER* s, int targetSteps) {
  */
 void updateStepper(struct STEPPER *s) {
     int stepsToMove = s->targetSteps - s->steps; //calculate direction to move
-    int currentStep =0; //Variable for switch logic
+   
 	
     if (stepsToMove > 0 ) { //Clockwise movement needed
         s->steps++; //updates step location
-		currentStep = abs(s->steps % 4); //Modulus limits currentsteps to 0 to 3 and abs ensures it's positive.
+		
     } else if (stepsToMove < 0) { //Counter clockwise movement needed
         s->steps--; //updates step location
-		currentStep = 3-abs(s->steps % 4); //Inverse of what currentStep would be if moving CW
     } else { //If it's at the target 0 power, Maybe this shouldn't exist if the motor needs to hold due to forces on it
         s->setA(0);
         s->setANot(0);
@@ -68,6 +67,17 @@ void updateStepper(struct STEPPER *s) {
         return;//Skip the moving part of the function
     }
 
+	int currentStep =0; //Variable for switch logic
+	if (s->steps >= 0) {
+		currentStep = abs(s->steps % 4); //Modulus limits currentsteps to 0 to 3 and abs ensures it's positive.
+	} else {
+		//Logic to flip if negative
+		if (abs(s->steps % 4) == 1) {
+			currentStep = 3;
+		} else if (abs(s->steps % 4) == 3) {
+			currentStep = 1;
+		}	
+	}
     switch(currentStep) {
         case 0:
             s->setA(1); //Set A to on
