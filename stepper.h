@@ -5,7 +5,6 @@
 /**
  * @brief Stepper struct to contain needed variables to control a stepper motor
  * 
- * @todo add degrees to step conversion
  */
 struct STEPPER
 {

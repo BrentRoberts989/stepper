@@ -30,7 +30,7 @@ void setupStepper(struct STEPPER* s, void (*setA)(int), void (*setANot)(int), vo
  * 
  * @param STEPPER The struct indicating the stepper to get steps from.
  * 
- * @return float The current step number of the motor where 0 is the starting step.
+ * @return int The current step number of the motor where 0 is the starting step and clockwise from there is a positive value.
  */
 int getCurrentStep(struct STEPPER s) {
     return s.steps;
@@ -51,7 +51,7 @@ void setTargetStep(struct STEPPER* s, int targetSteps) {
  * @param s The STEPPER struct to update, should be initialized before callthiing function.
  */
 void updateStepper(struct STEPPER *s) {
-    float stepsToMove = round(s->targetSteps - s->steps); //calculate direction to move
+    int stepsToMove = s->targetSteps - s->steps; //calculate direction to move
     
     if (stepsToMove > 0 ) { //Clockwise movement needed
         s->steps++; //updates step location
